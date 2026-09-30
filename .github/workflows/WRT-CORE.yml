@@ -192,6 +192,13 @@ jobs:
 
           make download -j$(nproc)
 
+      - name: Validate Kernel Patches
+        if: ${{ !inputs.WRT_TEST }}
+        run: |
+          cd ./wrt/
+
+          make target/linux/prepare V=s
+
       - name: Compile Firmware
         if: ${{ !inputs.WRT_TEST }}
         run: |
