@@ -72,3 +72,6 @@ uci commit smartdns
 exit 0
 EOF
 chmod +x ./files/etc/uci-defaults/99-smartdns-port
+# 修复 luci-app-smartdns 误报：port 为空时按默认 53 处理
+SMARTDNS_JS="./package/luci-app-smartdns/htdocs/luci-static/resources/view/smartdns/smartdns.js"
+[ -f "$SMARTDNS_JS" ] && sed -i "s|var smartdnsPort = uci.get_first('smartdns', 'smartdns', 'port');|var smartdnsPort = uci.get_first('smartdns', 'smartdns', 'port') \|\| '53';|" "$SMARTDNS_JS"
