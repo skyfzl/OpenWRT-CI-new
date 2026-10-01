@@ -94,7 +94,8 @@ UPDATE_PACKAGE "qmodem-generic" "LianXia233/luci-app-qmodem-generic" "main"
 
 # lucky
 UPDATE_PACKAGE "lucky" "gdy666/luci-app-lucky" "main"
-
+#luci-app-smartdns
+UPDATE_PACKAGE "luci-app-smartdns" "pymumu/luci-app-smartdns" "master"
 
 #更新软件包版本
 UPDATE_VERSION() {
