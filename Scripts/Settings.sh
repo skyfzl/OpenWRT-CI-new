@@ -62,3 +62,13 @@ if [[ "${WRT_TARGET^^}" == *"QUALCOMMAX"* ]]; then
 		echo "qualcommax set up nowifi successfully!"
 	fi
 fi
+
+# SmartDNS 默认端口设为 53，避免 LuCI 误报"重定向 Dnsmasq 失败"
+mkdir -p ./files/etc/uci-defaults
+cat > ./files/etc/uci-defaults/99-smartdns-port << 'EOF'
+#!/bin/sh
+uci set smartdns.@smartdns[0].port='53'
+uci commit smartdns
+exit 0
+EOF
+chmod +x ./files/etc/uci-defaults/99-smartdns-port
